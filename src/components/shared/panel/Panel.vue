@@ -1,14 +1,19 @@
+
 <template>
-    <div>
-        <p>{{ titulo }}</p>
-    </div>
+
+  <div class="painel">
+
+    <p class="painel-titulo">{{ titulo }}</p>
+    <slot class="painel-conteudo">
+    </slot>
+  </div>
+
 </template>
 
 <script>
+
 export default {
-
-    props: ['titulo']
-
+   props: ['titulo']
 }
 </script>
 
@@ -17,13 +22,14 @@ export default {
 ul {
   display: flex;
   grid-gap: 10px;
+  flex-wrap: wrap;
 }
 
 li {
   overflow: hidden;
   list-style: none;
   border: 1px solid #f25f4c;
-  width: 33%;
+  width: 32%;
   border-radius: 5px;
   height: auto;
 }

@@ -1,9 +1,11 @@
 <template>
   <div class="main-box">
-    <h1 class="mt-5">{{ titulo }}</h1>
+    <h1>{{ titulo }}</h1>
+
+    <input type="search" v-on:input="filtro = $event.target.value" placeholder="Filtre por parte do titulo">
 
     <ul>
-        <li v-for="foto of fotos" :key="foto">
+        <li v-for="foto of fotosComFiltro" :key="foto">
             <my-panel :titulo="foto.titulo">
                 <img :src="foto.url" :alt="foto.titulo">
             </my-panel>
@@ -24,8 +26,25 @@ export default {
     return {
       titulo: "Photos app",
       fotos: [],
-    };
+      filtro:''
+    }
   },
+
+  computed: {
+
+    fotosComFiltro() {
+      if(this.filtro) {
+
+        let exp = new RegExp(this.filtro.trim(), 'i');
+        return this.fotos.filter(foto => exp.test(foto.titulo));
+
+      } else {
+        return this.fotos
+      }
+    }
+
+  },
+
   created() {
     this.$http
       .get("http://localhost:3000/v1/fotos")
@@ -56,4 +75,10 @@ h1 {
   font-size: 40px;
   text-transform: uppercase;
 }
+
+input {
+  width: 40%;
+  padding: 10px;
+}
+
 </style>
