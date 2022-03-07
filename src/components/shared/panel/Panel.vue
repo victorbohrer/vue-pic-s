@@ -3,9 +3,13 @@
 
   <div class="painel">
 
-    <p class="painel-titulo">{{ titulo }}</p>
-    <slot class="painel-conteudo">
-    </slot>
+    <p class="painel-titulo" @click="visible = !visible">{{ titulo }}</p>
+	<transition name="panel-fade">
+		<div v-show="visible">
+			<slot>
+			</slot>
+		</div>
+	</transition>
   </div>
 
 </template>
@@ -13,7 +17,13 @@
 <script>
 
 export default {
-   props: ['titulo']
+   props: ['titulo'],
+
+   data() {
+	   return {
+		   visible: true
+	   }
+   }
 }
 </script>
 
@@ -38,6 +48,7 @@ img {
   width: 100%;
   height: 100%;
   border-top: 1px solid #f25f4c;
+  -webkit-user-drag: none;
 }
 
 p {
@@ -46,6 +57,15 @@ p {
   text-align: center;
   font-size: 20px;
   line-height: 20px;
+  cursor: pointer;
 }
+
+.panel-fade-enter, .panel-fade-leave-active {
+	opacity: 0;
+}
+
+.panel-fade-enter-active, .panel-fade-leave-active {
+	transition: opacity 0.3s;
+}	
 
 </style>
