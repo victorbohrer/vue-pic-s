@@ -46,7 +46,6 @@ export default {
         return this.fotos
       }
     }
-
   },
 
   created() {
