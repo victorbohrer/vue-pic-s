@@ -44,13 +44,6 @@ li {
   height: auto;
 }
 
-img {
-  width: 100%;
-  height: 100%;
-  border-top: 1px solid #f25f4c;
-  -webkit-user-drag: none;
-}
-
 p {
   color: #e53170;
   font-family: Helvetica, sans-serif;
